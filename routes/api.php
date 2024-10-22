@@ -18,6 +18,7 @@ Route::middleware([
         Route::get('users/options', [\App\Http\Controllers\UserController::class, 'options']);
         Route::resource('users', \App\Http\Controllers\UserController::class);
 
+        // 角色管理
         Route::resource('roles', \App\Http\Controllers\RoleController::class);
     });
 });
