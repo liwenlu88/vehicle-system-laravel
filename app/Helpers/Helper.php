@@ -77,7 +77,7 @@ class Helper
     }
 
     /**
-     * 验证请求数据并返回验证后的数据
+     * 验证表单数据并返回验证后的数据
      *
      * @param Request $request
      * @param string $formRequestClass
