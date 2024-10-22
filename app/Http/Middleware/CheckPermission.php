@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckPermission
@@ -19,7 +20,7 @@ class CheckPermission
         $requestedUrl = substr($request->path(), 4);
 
         // 获取当前用户
-        $user = $request->user();
+        $user = Auth::user();
 
         // 查找角色的权限
         $hasPermission = $user->roles->permissions->contains(function ($perm) use ($requestedUrl) {
