@@ -7,12 +7,12 @@ Route::post('auth/login', [\App\Http\Controllers\AuthController::class, 'login']
 
 Route::middleware([
     'auth:sanctum',
-    \App\Http\Middleware\OperationLog::class
+    \App\Http\Middleware\OperationLog::class // 操作日志
 ])->group(function () {
     Route::post('auth/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 
     Route::middleware([
-        \App\Http\Middleware\CheckPermission::class
+        \App\Http\Middleware\CheckPermission::class // 权限检查
     ])->group(function () {
         // 用户管理
         Route::get('users/options', [\App\Http\Controllers\UserController::class, 'options']);
