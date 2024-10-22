@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('auth/login', [AuthController::class, 'login'])
     ->middleware(OperationLog::class);
-
 Route::middleware([
     'auth:sanctum',
     OperationLog::class // 操作日志
