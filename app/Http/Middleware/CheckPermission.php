@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CheckPermission
 {
     /**
-     * Handle an incoming request.
+     * 模块访问权限中间件
      *
      * @param Closure(Request): (Response) $next
      */
