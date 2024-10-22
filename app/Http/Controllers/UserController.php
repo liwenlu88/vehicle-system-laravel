@@ -10,6 +10,7 @@ use App\Http\Resources\User\UserResourceCollection;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -113,7 +114,7 @@ class UserController extends Controller
     public function show(string $id)
     {
         return Helper::authorizeAndRespond('show', User::class, function () use ($id) {
-            $user = User::find($id);
+            $user = (new User())->find($id);
 
             if (empty($user)) {
                 return Helper::dataNotFound('用户不存在或已删除');
@@ -141,7 +142,7 @@ class UserController extends Controller
                 return Helper::dataNotFound('用户不存在或已删除');
             }
             // 只有超级管理员自己可以编辑自己的信息
-            if ($user->role_id == 1 && auth()->user()->id != $id) {
+            if ($user->role_id == 1 && Auth::user()->id != $id) {
                 return Helper::denyAccess();
             }
 
@@ -175,7 +176,7 @@ class UserController extends Controller
             $validatedData = Helper::requestValidation($request, UpdateUserRequest::class);
 
             // 只有超级管理员自己可以编辑自己的信息
-            if ($user->role_id == 1 && auth()->user()->id != $user->id) {
+            if ($user->role_id == 1 && Auth::user()->id != $user->id) {
                 return Helper::denyAccess();
             }
 
