@@ -88,7 +88,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         return Helper::authorizeAndRespond('create', User::class, function () use ($request) {
-            // 验证用户信息
+            // 验证表单数据
             $validatedData = Helper::requestValidation($request, StoreUserRequest::class);
 
             // 保存用户信息
