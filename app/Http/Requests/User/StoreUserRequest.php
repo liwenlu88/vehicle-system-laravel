@@ -53,7 +53,6 @@ class StoreUserRequest extends FormRequest
                 'exists:position_statuses,id',
             ],
             'description' => [
-                'nullable',
                 'max:255',
             ]
         ];

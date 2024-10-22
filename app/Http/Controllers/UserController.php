@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         return response()->json([
             'code' => 0,
-            'message' => '选项信息',
+            'message' => 'success',
             'data' => [
                 'role_list' => Helper::getRoleList(),
                 'position_status_list' => Helper::getPositionStatusList()
@@ -60,7 +60,7 @@ class UserController extends Controller
 
         return response()->json([
             'code' => 0,
-            'message' => '用户信息列表',
+            'message' => 'success',
             'data' => new UserResourceCollection($users)
         ]);
     }
@@ -73,7 +73,7 @@ class UserController extends Controller
         return Helper::authorizeAndRespond('create', User::class, function () {
             return response()->json([
                 'code' => 0,
-                'message' => '创建用户',
+                'message' => 'success',
                 'data' => [
                     'role_list' => Helper::getRoleList(),
                     'position_status_list' => Helper::getPositionStatusList()
@@ -98,7 +98,7 @@ class UserController extends Controller
 
             return response()->json([
                 'code' => 0,
-                'message' => '创建用户成功',
+                'message' => 'success',
                 'data' => [
                     'user' => new UserResource($user)
                 ]
@@ -121,7 +121,7 @@ class UserController extends Controller
 
             return response()->json([
                 'code' => 0,
-                'message' => '用户信息',
+                'message' => 'success',
                 'data' => [
                     'user' => new UserResource($user)
                 ]
@@ -147,7 +147,7 @@ class UserController extends Controller
 
             return response()->json([
                 'code' => 0,
-                'message' => '编辑用户',
+                'message' => 'success',
                 'data' => [
                     'user' => new UserResource($user),
                     'role_list' => Helper::getRoleList(),
@@ -160,10 +160,10 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, string $id)
     {
-        return Helper::authorizeAndRespond('edit', User::class, function () use ($request) {
-            $user = User::find($request->route('user'));
+        return Helper::authorizeAndRespond('edit', User::class, function () use ($request, $id) {
+            $user = User::find($id);
 
             if (empty($user)) {
                 return Helper::dataNotFound('用户不存在或已删除');
@@ -184,7 +184,7 @@ class UserController extends Controller
 
             return response()->json([
                 'code' => 0,
-                'message' => '更新用户成功',
+                'message' => 'success',
             ]);
         });
     }
@@ -207,7 +207,7 @@ class UserController extends Controller
 
             return response()->json([
                 'code' => 0,
-                'message' => '删除用户成功',
+                'message' => 'success',
             ]);
         });
     }
