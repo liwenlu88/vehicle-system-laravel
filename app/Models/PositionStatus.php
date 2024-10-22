@@ -6,9 +6,6 @@ use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-/**
- * @method static select(string $string, string $string1)
- */
 class PositionStatus extends Model
 {
     use SoftDeletes;
