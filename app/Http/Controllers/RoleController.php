@@ -211,7 +211,7 @@ class RoleController extends Controller
             }
 
             DB::transaction(function () use ($role) {
-                // 匹配该角色的账户 role_id 制空
+                // 匹配该角色的账户 role_id 置空
                 $users = $role->users()->get();
 
                 foreach ($users as $user) {
