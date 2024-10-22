@@ -14,6 +14,7 @@ Route::middleware([
     Route::middleware([
         \App\Http\Middleware\CheckPermission::class
     ])->group(function () {
+        // 用户管理
         Route::get('users/options', [\App\Http\Controllers\UserController::class, 'options']);
         Route::resource('users', \App\Http\Controllers\UserController::class);
 
