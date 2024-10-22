@@ -114,7 +114,7 @@ class UserController extends Controller
     public function show(string $id)
     {
         return Helper::authorizeAndRespond('show', User::class, function () use ($id) {
-            $user = (new User())->find($id);
+            $user = User::find($id);
 
             if (empty($user)) {
                 return Helper::dataNotFound('用户不存在或已删除');
