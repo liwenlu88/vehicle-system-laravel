@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 class OperationLog
 {
     /**
-     * Handle an incoming request.
+     * 操作日志中间件
      *
      * @param Closure(Request): (Response) $next
      */
