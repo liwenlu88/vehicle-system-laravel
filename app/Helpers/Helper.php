@@ -2,6 +2,8 @@
 
 namespace App\Helpers;
 
+use App\Models\Menu;
+use App\Models\Method;
 use App\Models\PositionStatus;
 use App\Models\Role;
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +15,9 @@ class Helper
 {
     /**
      * Policy 授权检查
+     *
+     * @param string $method
+     * @return bool
      */
     public static function authorize(string $method): bool
     {
@@ -26,9 +31,14 @@ class Helper
     }
 
     /**
+     * @param string $action
+     * @param string $modelClass
+     * @param callable $successCallback
+     * @return mixed
+     *
      * Policy 授权权限检查并返回成功回调函数的响应
      */
-    public static function authorizeAndRespond(string $action, string $modelClass, callable $successCallback)
+    public static function authorizeAndRespond(string $action, string $modelClass, callable $successCallback): mixed
     {
         $response = Gate::inspect($action, $modelClass);
 
@@ -41,6 +51,8 @@ class Helper
 
     /**
      * 禁止访问
+     *
+     * @return JsonResponse
      */
     public static function denyAccess(): JsonResponse
     {
@@ -52,6 +64,9 @@ class Helper
 
     /**
      * 数据不存在
+     *
+     * @param string $message
+     * @return JsonResponse
      */
     public static function dataNotFound(string $message = '数据不存在'): JsonResponse
     {
@@ -63,6 +78,11 @@ class Helper
 
     /**
      * 验证请求数据并返回验证后的数据
+     *
+     * @param Request $request
+     * @param string $formRequestClass
+     * @return array
+     *
      */
     public static function requestValidation(Request $request, string $formRequestClass): array
     {
@@ -96,6 +116,9 @@ class Helper
 
     /**
      * 获取角色列表 -- 不包含超级管理员
+     *
+     * @return mixed
+     *
      */
     public static function getRoleList(): mixed
     {
@@ -103,7 +126,31 @@ class Helper
     }
 
     /**
+     * 获取菜单列表
+     *
+     * @return mixed
+     *
+     */
+    public static function getMenuList(): mixed
+    {
+        return Menu::select('id', 'name', 'url')->get();
+    }
+
+    /**
+     * 获取请求方法列表
+     *
+     * @return mixed
+     */
+    public static function getMethodList(): mixed
+    {
+        return Method::select('id', 'name')->get();
+    }
+
+    /**
      * 获取职位状态列表
+     *
+     * @return mixed
+     *
      */
     public static function getPositionStatusList(): mixed
     {
