@@ -117,12 +117,12 @@ class Helper
     }
 
     /**
-     * 获取用户权限
+     * Redis 中查找角色权限，不存在则从数据库中查找并缓存
      * 
      * @param int $roleId
      * @return mixed
      */
-    public static function getUserPermissions(int $roleId): mixed
+    public static function getRolePermissions(int $roleId): mixed
     {
         // 定义 Redis 键，角色 ID
         $cacheKey = 'roles_permissions_' . $roleId;
@@ -141,7 +141,7 @@ class Helper
     }
 
     /**
-     * 刷新角色权限缓存
+     * 刷新 Redis 角色权限缓存
      * 
      * @param int $roleId
      * @return void
