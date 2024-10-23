@@ -119,6 +119,7 @@ class Helper
     /**
      * 获取用户权限
      * 
+     * @param int $roleId
      * @return mixed
      */
     public static function getUserPermissions(int $roleId): mixed
