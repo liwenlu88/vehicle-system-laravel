@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Helpers\Helper;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,10 +43,7 @@ class CheckPermission
         });
 
         if (!$hasPermission) {
-            return response()->json([
-                'code' => 403,
-                'message' => '禁止访问'
-            ], 403);
+            return Helper::denyAccess();
         }
 
         return $next($request);
