@@ -11,12 +11,20 @@ class AuthController extends Controller
 {
     public function login(Request $request): JsonResponse
     {
-        $credentials = $request->only(['account', 'password']);
+        $request->validate([
+            'account' => 'required',
+            'password' => 'required',
+        ], [
+            'account.required' => '请输入账号',
+            'password.required' => '请输入密码'
+        ]);
+
+        $credentials = $request->only('account', 'password');
 
         if (Auth::attempt($credentials)) {
             $token = $request->user()->createToken(
-                'app',
-                ['*'],
+                Auth::user()->name,
+                ['users'],
                 now()->addDays(7)
             )->plainTextToken;
 
