@@ -33,12 +33,12 @@ class Helper
     }
 
     /**
+     * Policy 授权权限检查并返回成功回调函数的响应
+     * 
      * @param string $action
      * @param string $modelClass
      * @param callable $successCallback
      * @return mixed
-     *
-     * Policy 授权权限检查并返回成功回调函数的响应
      */
     public static function authorizeAndRespond(string $action, string $modelClass, callable $successCallback): mixed
     {
