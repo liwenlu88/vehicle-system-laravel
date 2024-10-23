@@ -88,6 +88,9 @@ class RoleController extends Controller
                 return $role;
             });
 
+            // 刷新角色权限缓存
+            Helper::refreshRolePermissions($roles->id);
+
             return response()->json([
                 'code' => 0,
                 'message' => 'success',
@@ -187,6 +190,9 @@ class RoleController extends Controller
 
                 return $role;
             });
+
+            // 刷新角色权限缓存
+            Helper::refreshRolePermissions($roles->id);
 
             return response()->json([
                 'code' => 0,
