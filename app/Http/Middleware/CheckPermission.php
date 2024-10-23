@@ -19,8 +19,8 @@ class CheckPermission
     {
         $user = Auth::user();
 
-        // 获取用户权限
-        $permissions = Helper::getUserPermissions($user->role_id);
+        // 获取角色权限
+        $permissions = Helper::getRolePermissions($user->role_id);
 
         // 获取当前请求的 URL 并去掉前缀 api/
         $requestedUrl = substr($request->path(), 4);
