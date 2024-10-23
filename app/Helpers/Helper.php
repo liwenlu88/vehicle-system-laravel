@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Redis;
 
 class Helper
 {
@@ -113,6 +114,45 @@ class Helper
 
         // 将原数据添加到请求头
         $request->headers->set('X-Original-Data', json_encode($originalData));
+    }
+
+    /**
+     * 获取用户权限
+     * 
+     * @return mixed
+     */
+    public static function getUserPermissions(int $roleId): mixed
+    {
+        // 定义 Redis 键，角色 ID
+        $cacheKey = 'roles_permissions_' . $roleId;
+
+        // 从 Redis 获取权限
+        $permissions = Redis::get($cacheKey);
+
+        // 如果 Redis 缓存中没有权限数据，从数据库获取并创建 24 小时的缓存
+        if (empty($permissions)) {
+            $permissions = Role::find($roleId)->permissions()->with('menus')->get()->toJson();
+            Redis::setex($cacheKey, 60 * 60 * 24, $permissions);
+        }
+
+        // 解码 JSON 格式的权限数据
+        return json_decode($permissions);
+    }
+
+    /**
+     * 刷新角色权限缓存
+     * 
+     * @param int $roleId
+     * @return void
+     */
+    public static function refreshRolePermissions(int $roleId): void
+    {
+        // 定义 Redis 键，角色 ID
+        $cacheKey = 'roles_permissions_' . $roleId;
+
+        // 从数据库获取权限并创建 24 小时的缓存
+        $permissions = Role::find($roleId)->permissions()->with('menus')->get()->toJson();
+        Redis::setex($cacheKey, 60 * 60 * 24, $permissions);
     }
 
     /**
