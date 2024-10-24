@@ -20,13 +20,11 @@ Route::group([
     Route::group([
         'prefix' => 'auth',
     ], function () {
-        Route::post('login', [AuthController::class, 'login'])->withoutMiddleware('auth:admin');
-        Route::post('logout', [AuthController::class, 'logout']);
+        Route::post('login', [AuthController::class, 'login'])->withoutMiddleware(['auth:admin', CheckPermission::class]);
+        Route::post('logout', [AuthController::class, 'logout'])->withoutMiddleware([CheckPermission::class]);
     });
 
-    Route::middleware([
-
-    ])->group(function () {
+    Route::middleware([])->group(function () {
         // Admin 用户管理
         Route::get('users/options', [AdminController::class, 'options']);
         Route::resource('users', AdminController::class);

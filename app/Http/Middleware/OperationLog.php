@@ -16,8 +16,8 @@ class OperationLog
      */
     public function handle(Request $request, Closure $next): Response
     {
-        dd($request->all());
-        $admin = auth('admin')->user();;
+        $admin = auth('admin')->user();
+
         // 处理请求
         $response = $next($request);
 
@@ -62,11 +62,11 @@ class OperationLog
      */
     protected function getOperationType($method, $path): string
     {
-        if ($path === 'auth/login' && $method === 'POST') {
+        if (strpos($path, 'login') && $method === 'POST') {
             return 'Login';
         }
 
-        if ($path === 'auth/logout' && $method === 'POST') {
+        if (strpos($path, 'logout') && $method === 'POST') {
             return 'Logout';
         }
 
