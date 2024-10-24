@@ -218,11 +218,11 @@ class RoleController extends Controller
 
             DB::transaction(function () use ($role) {
                 // 匹配该角色的账户 role_id 置空
-                $users = $role->users()->get();
+                $admins = $role->admins()->get();
 
-                foreach ($users as $user) {
-                    $user->role_id = null;
-                    $user->save();
+                foreach ($admins as $admin) {
+                    $admin->role_id = null;
+                    $admin->save();
                 }
 
                 // 删除角色权限

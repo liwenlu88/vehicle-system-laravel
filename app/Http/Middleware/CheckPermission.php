@@ -17,10 +17,10 @@ class CheckPermission
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Auth::user();
+        $admin = auth('admin')->user();
 
         // 获取角色权限
-        $permissions = Helper::getRolePermissions($user->role_id);
+        $permissions = Helper::getRolePermissions($admin->role_id);
 
         // 获取当前请求的 URL 并去掉前缀 api/
         $requestedUrl = substr($request->path(), 4);

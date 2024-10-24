@@ -15,23 +15,23 @@ class MenuSeeder extends Seeder
         $menus = [
             [
                 'name' => 'Dashboard',
-                'url' => 'dashboard',
+                'url' => 'admin/dashboard',
             ],
             [
                 'name' => '用户管理',
-                'url' => 'users',
+                'url' => 'admin/users',
             ],
             [
                 'name' => '角色管理',
-                'url' => 'roles',
+                'url' => 'admin/roles',
             ],
             [
                 'name' => '权限管理',
-                'url' => 'permissions',
+                'url' => 'admin/permissions',
             ],
             [
                 'name' => '菜单管理',
-                'url' => 'menus',
+                'url' => 'admin/menus',
             ],
         ];
 

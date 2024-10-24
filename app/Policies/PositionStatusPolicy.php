@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Models\PositionStatus;
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Auth\Access\Response;
 
 class PositionStatusPolicy
@@ -11,7 +11,7 @@ class PositionStatusPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(Admin $user): bool
     {
         //
     }
@@ -19,7 +19,7 @@ class PositionStatusPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, PositionStatus $positionStatus): bool
+    public function view(Admin $user, PositionStatus $positionStatus): bool
     {
         //
     }
@@ -27,7 +27,7 @@ class PositionStatusPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(Admin $user): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class PositionStatusPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, PositionStatus $positionStatus): bool
+    public function update(Admin $user, PositionStatus $positionStatus): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class PositionStatusPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, PositionStatus $positionStatus): bool
+    public function delete(Admin $user, PositionStatus $positionStatus): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class PositionStatusPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, PositionStatus $positionStatus): bool
+    public function restore(Admin $user, PositionStatus $positionStatus): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class PositionStatusPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, PositionStatus $positionStatus): bool
+    public function forceDelete(Admin $user, PositionStatus $positionStatus): bool
     {
         //
     }

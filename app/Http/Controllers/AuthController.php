@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\User\ShowUserResource;
+use App\Http\Resources\Admin\ShowAdminResource;
+use App\Models\Admin;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -19,27 +21,30 @@ class AuthController extends Controller
             'password.required' => '请输入密码'
         ]);
 
-        $credentials = $request->only('account', 'password');
+        $account = $request->input('account');
+        $password = $request->input('password');
 
-        if (Auth::attempt($credentials)) {
-            $token = $request->user()->createToken(
-                Auth::user()->name,
-                ['users'],
-                now()->addDays(7)
-            )->plainTextToken;
+        $admin = Admin::where('account', $account)->first();
 
+        if (!$admin || !Hash::check($password, $admin->password)) {
             return response()->json([
-                'code' => 0,
-                'message' => '登录成功',
-                'data' => new ShowUserResource($request->user()),
-                'token' => $token
-            ]);
+                'code' => 401,
+                'message' => '账号或密码错误'
+            ], 401);
         }
 
+        $token = $admin->createToken(
+            $admin->name,
+            ['admin'],
+            now()->addDays(7)
+        )->plainTextToken;
+
         return response()->json([
-            'code' => 401,
-            'message' => '账号或密码错误'
-        ], 401);
+            'code' => 0,
+            'message' => '登录成功',
+            'data' => new ShowAdminResource($admin),
+            'token' => $token
+        ]);
     }
 
     public function logout(Request $request): JsonResponse

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateUserRequest extends FormRequest
+class UpdateAdminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,12 +26,12 @@ class UpdateUserRequest extends FormRequest
             'name' => [
                 'required',
                 'between:2,10',
-                'unique:users,name,' . $this->route('user')
+                'unique:admins,name,' . $this->route('user')
             ],
             'contact_tel' => [
                 'required',
                 'regex:/^1[3-9]\d{9}$/',
-                'unique:users,contact_tel,' . $this->route('user')
+                'unique:admins,contact_tel,' . $this->route('user')
             ],
             'role_id' => [
                 'required',

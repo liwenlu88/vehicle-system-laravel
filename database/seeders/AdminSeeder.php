@@ -2,19 +2,19 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Database\Seeder;
 
-class UserSeeder extends Seeder
+class AdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        User::factory(2000)->create();
+        Admin::factory(2000)->create();
 
-        $user = User::first();
+        $user = Admin::first();
         $user->name = 'Super Admin';
         $user->account = 'admin';
         $user->role_id = 1;

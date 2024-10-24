@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\Admin;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class, // 权限
             RoleSeeder::class, // 角色
             PositionStatusSeeder::class, // 职位状态
-            UserSeeder::class, // 用户
+            AdminSeeder::class, // 管理员
         ]);
     }
 }

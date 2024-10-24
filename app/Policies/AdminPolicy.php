@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-class UserPolicy extends BasePolicy
+class AdminPolicy extends BasePolicy
 {
 
 }

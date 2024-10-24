@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\User;
-use App\Policies\UserPolicy;
+use App\Models\Admin;
+use App\Policies\AdminPolicy;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      * 策略映射
      */
     protected array $policies = [
-        User::class => UserPolicy::class,
+        Admin::class => AdminPolicy::class,
     ];
 
     /**

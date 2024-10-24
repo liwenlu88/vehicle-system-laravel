@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\User;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class StoreAdminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,18 +26,18 @@ class StoreUserRequest extends FormRequest
             'name' => [
                 'required',
                 'between:2,10',
-                'unique:users,name',
+                'unique:admins,name',
             ],
             'contact_tel' => [
                 'required',
                 'regex:/^1[3-9]\d{9}$/',
-                'unique:users,contact_tel',
+                'unique:admins,contact_tel',
             ],
             'account' => [
                 'required',
                 'between:5,18',
                 'regex:/^[A-Za-z0-9@_-]+$/',
-                'unique:users,account',
+                'unique:admins,account',
             ],
             'password' => [
                 'required',

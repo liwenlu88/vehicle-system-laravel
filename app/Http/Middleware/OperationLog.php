@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use App\Models\Log;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class OperationLog
@@ -17,8 +16,8 @@ class OperationLog
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Auth::user();
-
+        dd($request->all());
+        $admin = auth('admin')->user();;
         // 处理请求
         $response = $next($request);
 
@@ -30,7 +29,7 @@ class OperationLog
         $operation = $this->getOperationType($method, $path);
 
         // 获取操作账户
-        $account = $operation == 'Login' ? $request->input('account') : $user->account;
+        $account = $operation == 'Login' ? $request->input('account') : $admin->account;
 
         $log = new Log();
 

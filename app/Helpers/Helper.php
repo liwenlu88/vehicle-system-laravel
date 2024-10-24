@@ -9,7 +9,6 @@ use App\Models\Role;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Redis;
 
@@ -24,7 +23,7 @@ class Helper
     public static function authorize(string $method): bool
     {
         // 获取当前用户的权限
-        $permissions = Auth::user()->roles->permissions;
+        $permissions = auth('admin')->user()->roles->permissions;
 
         // 检查是否有对应的权限
         return $permissions->contains(function ($perm) use ($method) {
@@ -34,7 +33,7 @@ class Helper
 
     /**
      * Policy 授权权限检查并返回成功回调函数的响应
-     * 
+     *
      * @param string $action
      * @param string $modelClass
      * @param callable $successCallback
@@ -118,7 +117,7 @@ class Helper
 
     /**
      * Redis 中查找角色权限，不存在则从数据库中查找并缓存
-     * 
+     *
      * @param int $roleId
      * @return mixed
      */
@@ -142,7 +141,7 @@ class Helper
 
     /**
      * 刷新 Redis 角色权限缓存
-     * 
+     *
      * @param int $roleId
      * @return void
      */

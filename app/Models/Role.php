@@ -22,9 +22,9 @@ class Role extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function users(): HasMany
+    public function admins(): HasMany
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Admin::class);
     }
 
     public function permissions(): HasMany

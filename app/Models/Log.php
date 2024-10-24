@@ -31,6 +31,6 @@ class Log extends Model
 
     public function users()
     {
-        return $this->belongsTo(User::class, 'account', 'account');
+        return $this->belongsTo(Admin::class, 'account', 'account');
     }
 }
