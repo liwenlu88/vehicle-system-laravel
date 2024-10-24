@@ -7,6 +7,23 @@ use App\Http\Middleware\CheckPermission;
 use App\Http\Middleware\OperationLog;
 use Illuminate\Support\Facades\Route;
 
+/** 客户端 */
+
+Route::group([
+    'middleware' => [
+        'auth:user',
+        OperationLog::class, // 操作日志
+    ]
+], function () {
+    Route::group([
+        'prefix' => 'auth',
+    ], function () {
+        Route::post('login', [AuthController::class, 'login'])->withoutMiddleware(['auth:user']);
+        Route::post('logout', [AuthController::class, 'logout']);
+    });
+});
+
+
 /** 管理端 */
 
 Route::group([
@@ -20,8 +37,8 @@ Route::group([
     Route::group([
         'prefix' => 'auth',
     ], function () {
-        Route::post('login', [AuthController::class, 'login'])->withoutMiddleware(['auth:admin', CheckPermission::class]);
-        Route::post('logout', [AuthController::class, 'logout'])->withoutMiddleware([CheckPermission::class]);
+        Route::post('login', [AuthController::class, 'adminLogin'])->withoutMiddleware(['auth:admin', CheckPermission::class]);
+        Route::post('logout', [AuthController::class, 'adminLogout'])->withoutMiddleware([CheckPermission::class]);
     });
 
     Route::middleware([])->group(function () {

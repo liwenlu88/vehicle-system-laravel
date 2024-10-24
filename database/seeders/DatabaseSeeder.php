@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class, // 角色
             PositionStatusSeeder::class, // 职位状态
             AdminSeeder::class, // 管理员
-            DriverSeeder::class, // 司机
+            UserSeeder::class, // 用户
         ]);
     }
 }

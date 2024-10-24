@@ -6,7 +6,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Session Driver
+    | Default Session User
     |--------------------------------------------------------------------------
     |
     | This option determines the default session driver that is utilized for

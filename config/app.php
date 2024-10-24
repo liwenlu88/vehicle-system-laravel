@@ -107,7 +107,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Maintenance Mode Driver
+    | Maintenance Mode User
     |--------------------------------------------------------------------------
     |
     | These configuration options determine the driver used to determine and

@@ -6,10 +6,11 @@ use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Sanctum\HasApiTokens;
 
-class Driver extends Model
+class User extends Model
 {
-    use SoftDeletes, HasFactory;
+    use SoftDeletes, HasApiTokens, HasFactory;
 
     protected $fillable = [
         'name',

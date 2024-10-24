@@ -27,7 +27,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->render(function (AuthenticationException $e, Request $request) {
             return response()->json([
-                'code' => 1,
+                'code' => 401,
                 'message' => '账户未经授权，请先登录。',
             ], 401);
         });

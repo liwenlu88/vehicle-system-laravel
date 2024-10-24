@@ -2,21 +2,21 @@
 
 namespace Database\Seeders;
 
-use App\Models\Driver;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class DriverSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Driver::factory(20)->create();
+        User::factory(20)->create();
 
-        $driver = Driver::find(1);
-        $driver->name = 'Driver';
-        $driver->account = 'driver';
+        $driver = User::find(1);
+        $driver->name = 'User';
+        $driver->account = 'user';
         $driver->position_status_id = 1;
         $driver->save();
     }

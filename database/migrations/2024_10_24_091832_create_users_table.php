@@ -4,15 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('drivers', function (Blueprint $table) {
-            $table->comment('司机');
+        Schema::create('users', function (Blueprint $table) {
+            $table->comment('用户');
             $table->id();
             $table->string('name')->comment('用户名');
             $table->string('contact_tel', 20)->comment('联系电话');
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('drivers');
+        Schema::dropIfExists('users');
     }
 };
