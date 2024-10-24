@@ -14,11 +14,11 @@ class AdminSeeder extends Seeder
     {
         Admin::factory(2000)->create();
 
-        $user = Admin::first();
-        $user->name = 'Super Admin';
-        $user->account = 'admin';
-        $user->role_id = 1;
-        $user->position_status_id = 1;
-        $user->save();
+        $admin = Admin::first();
+        $admin->name = 'Super Admin';
+        $admin->account = 'admin';
+        $admin->role_id = 1;
+        $admin->position_status_id = 1;
+        $admin->save();
     }
 }
