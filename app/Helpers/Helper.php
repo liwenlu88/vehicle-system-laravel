@@ -15,17 +15,6 @@ use Illuminate\Support\Facades\Redis;
 class Helper
 {
     /**
-     * 账号或密码错误
-     */
-    public static function accountOrPasswordError(): JsonResponse
-    {
-        return response()->json([
-            'code' => 401,
-            'message' => '账号或密码错误',
-        ], 401);
-    }
-
-    /**
      * Policy 授权检查
      *
      * @param string $method
