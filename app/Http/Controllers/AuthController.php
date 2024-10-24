@@ -2,35 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Auth\AdminLoginRequest;
 use App\Http\Resources\Admin\ShowAdminResource;
 use App\Models\Admin;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function login(Request $request): JsonResponse
+    public function login(AdminLoginRequest $request): JsonResponse
     {
-        $request->validate([
-            'account' => 'required',
-            'password' => 'required',
-        ], [
-            'account.required' => '请输入账号',
-            'password.required' => '请输入密码'
-        ]);
-
-        $account = $request->input('account');
-        $password = $request->input('password');
-
-        $admin = Admin::where('account', $account)->first();
-
-        if (!$admin || !Hash::check($password, $admin->password)) {
-            return response()->json([
-                'code' => 401,
-                'message' => '账号或密码错误'
-            ], 401);
-        }
+        $admin = Admin::where('account', $request->input('account'))->first();
 
         $token = $admin->createToken(
             $admin->name,

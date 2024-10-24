@@ -7,7 +7,7 @@ use App\Http\Middleware\CheckPermission;
 use App\Http\Middleware\OperationLog;
 use Illuminate\Support\Facades\Route;
 
-/** 管理员端 */
+/** 管理端 */
 
 Route::group([
     'prefix' => 'admin',
