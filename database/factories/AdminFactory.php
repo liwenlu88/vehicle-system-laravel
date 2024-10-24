@@ -33,7 +33,6 @@ class AdminFactory extends Factory
             'role_id' => Role::where('id', '!=', 1)->inRandomOrder()->first()->id,
             'position_status_id' => PositionStatus::inRandomOrder()->first()->id,
             'description' => fake()->text(200),
-            'remember_token' => Str::random(10),
         ];
     }
 }

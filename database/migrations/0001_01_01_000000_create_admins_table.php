@@ -20,7 +20,6 @@ return new class extends Migration {
             $table->unsignedBigInteger('role_id')->nullable()->comment('角色');
             $table->unsignedBigInteger('position_status_id')->nullable()->comment('职位状态');
             $table->string('description')->nullable()->comment('描述');
-            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
         });
